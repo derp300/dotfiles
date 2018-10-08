@@ -10,3 +10,7 @@ ln -s $PWD/vim/.vim ~/.vim
 rm -rf ~/.config/terminator/config
 ln -s $PWD/terminator/config ~/.config/terminator/config
 
+#------------------------i3---------------
+rm -rf ~/.config/i3/config
+ln -s $PWD/i3/config ~/.config/i3/config
+
