@@ -9,6 +9,8 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 syntax on
+set encoding=utf-8
+set fileencoding=utf-8
 
 set term=xterm-256color
 colorscheme bubblegum
