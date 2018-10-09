@@ -18,3 +18,7 @@ ln -s $PWD/i3/config ~/.config/i3/config
 rm -rf ~/.xinitrc
 ln -s $PWD/xinit/.xinitrc ~/.xinitrc
 
+#-------------------------bash------------
+rm -rf ~/.bash_profile
+ln -s $PWD/bash/.bash_profile ~/.bash_profile
+
