@@ -14,3 +14,7 @@ ln -s $PWD/terminator/config ~/.config/terminator/config
 rm -rf ~/.config/i3/config
 ln -s $PWD/i3/config ~/.config/i3/config
 
+#------------------------xinit------------
+rm -rf ~/.xinitrc
+ln -s $PWD/xinit/.xinitrc ~/.xinitrc
+
