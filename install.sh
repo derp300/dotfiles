@@ -22,3 +22,12 @@ ln -s $PWD/xinit/.xinitrc ~/.xinitrc
 rm -rf ~/.bash_profile
 ln -s $PWD/bash/.bash_profile ~/.bash_profile
 
+#-------------------------twmn------------
+rm -rf ~/.config/twmn/twmn.conf
+ln -s $PWD/twmn/twmn.conf ~/.config/twmn/twmn.conf
+
+
+
+
+
+
