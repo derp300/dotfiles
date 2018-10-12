@@ -26,6 +26,9 @@ ln -s $PWD/bash/.bash_profile ~/.bash_profile
 rm -rf ~/.config/twmn/twmn.conf
 ln -s $PWD/twmn/twmn.conf ~/.config/twmn/twmn.conf
 
+#-------------------------gxkb------------
+rm -rf ~/.config/gxkb/gxkb.cfg
+ln -s $PWD/gxkb/gxkb.cfg ~/.config/gxkb/gxkb.cfg
 
 
 
