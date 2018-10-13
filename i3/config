@@ -37,7 +37,18 @@ floating_modifier $sup
 bindsym $sup+t exec terminator
 
 # kill focused window
-bindsym $sup+w kill
+bindsym $sup+k kill
+bindsym $alt+f4 kill
+
+# Make the currently focused window a scratchpad
+bindsym $sup+minus move scratchpad
+# Show the first scratchpad window
+bindsym $sup+equal scratchpad show
+# Show the teleg scratchpad window, if any.
+bindsym $sup+Shift+t [title="^Tel"] scratchpad show
+
+# chromium
+bindsym $sup+w exec chromium
 
 # start dmenu (a program launcher)
 bindsym $sup+d exec dmenu_run -fn 'xos4 Terminus-10'
@@ -47,10 +58,10 @@ bindsym $sup+d exec dmenu_run -fn 'xos4 Terminus-10'
 # bindsym $sup+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $sup+j focus left
-bindsym $sup+k focus down
-bindsym $sup+l focus up
-bindsym $sup+semicolon focus right
+#bindsym $sup+j focus left
+#bindsym $sup+k focus down
+#bindsym $sup+l focus up
+#bindsym $sup+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $sup+Left focus left
@@ -59,10 +70,10 @@ bindsym $sup+Up focus up
 bindsym $sup+Right focus right
 
 # move focused window
-bindsym $sup+Shift+j move left
-bindsym $sup+Shift+k move down
-bindsym $sup+Shift+l move up
-bindsym $sup+Shift+semicolon move right
+#bindsym $sup+Shift+j move left
+#bindsym $sup+Shift+k move down
+#bindsym $sup+Shift+l move up
+#bindsym $sup+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $sup+Shift+Left move left

@@ -12,7 +12,9 @@ ln -s $PWD/terminator/config ~/.config/terminator/config
 
 #------------------------i3---------------
 rm -rf ~/.config/i3/config
+rm -rf ~/.i3status.conf 
 ln -s $PWD/i3/config ~/.config/i3/config
+ln -s $PWD/i3/.i3status.conf ~/.i3status.conf 
 
 #------------------------xinit------------
 rm -rf ~/.xinitrc
