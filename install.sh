@@ -7,8 +7,8 @@ ln -s $PWD/vim/.vimrc ~/.vimrc
 ln -s $PWD/vim/.vim ~/.vim
 
 #----------------------terminator---------
-rm -rf ~/.config/terminator/config
-ln -s $PWD/terminator/config ~/.config/terminator/config
+#rm -rf ~/.config/terminator/config
+#ln -s $PWD/terminator/config ~/.config/terminator/config
 
 
 

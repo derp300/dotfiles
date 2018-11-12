@@ -12,8 +12,10 @@ syntax on
 set encoding=utf-8
 set fileencoding=utf-8
 
-set term=xterm-256color
-colorscheme bubblegum
+set t_Co=16
+"set term=xterm-256color
+"colorscheme bubblegum
+"colorscheme vizuki
 
 "==============================================================
 "+++++++++++++++++++++++++++Plugins++++++++++++++++++++++++++++
