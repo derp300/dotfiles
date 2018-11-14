@@ -62,7 +62,7 @@
     cursor_color = "#839496"
     font = Monospace 12
     foreground_color = "#000000"
-    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
+    palette = "#776977:#ca402b:#379a37:#bb8a35:#516aec:#7b59c0:#159393:#ab9bab:#776977:#ca402b:#379a37:#bb8a35:#516aec:#7b59c0:#159393:#f7f3f7"
     scrollbar_position = hidden
     show_titlebar = False
     use_system_font = False
