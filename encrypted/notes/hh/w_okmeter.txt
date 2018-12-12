@@ -1,0 +1,104 @@
+
+heyv tqr hmnrz pbytngr
+uggcf://uu.eh.bireybeq.cla.eh/
+uggcf://uu.eh.bireybeq.cla.eh/frnepu/erfhzr/nqinaprq
+uggcf://uu.eh.bireybeq.cla.eh/frnepu/inpnapl/nqinaprq
+
+pbasvt                     - fhqb ivz /hfe/ybpny/bxntrag/rgp/pbasvt.q/ybtcnefre_cresbeznapr_fgng.lnzy
+eha bxntrag                - fhqb /hfe/ybpny/bxntrag/bxntrag
+purpx pbasvt               - fhqb /hfe/ybpny/bxntrag/bxntrag -qel-eha=/hfe/ybpny/bxntrag/rgp/pbasvt.q/ybtcnefre_cresbeznapr_fgng.lnzy
+erfgneg bxntrag            - fhqb /rgp/vavg.q/bxntrag erfgneg
+, fbhepr_ubfganzr='ancnyz'
+uggcf://bxzrgre.vb/uu.eh/qnfuobneqf/pyvragfgng
+
+
+
+yvarf:
+  - rkcerffvba: gbc(5, znk_ol(hey, zrgevp(vafgnapr='/hfe/ybpny/bxntrag/rgp/pbasvt.q/ybtcnefre_cresbeznapr_fgng.lnzy', anzr='cresbeznapr.fgng.qhengvba_ol_hey_2', ragelGlcr='ybatgnfx', cyhtva='ybtcnefre')), vapyhqr_bgure=snyfr)
+    glcr: nern
+bcgvbaf:
+  l_gvgyr: frpbaqf
+gvgyr: GBC5 hey ol CresebeznaprBofreire ybat gnfxf
+
+yvarf:
+  - rkcerffvba: gbc(5, znk_ol(pbagnvareFep, zrgevp(vafgnapr='/hfe/ybpny/bxntrag/rgp/pbasvt.q/ybtcnefre_cresbeznapr_fgng.lnzy', anzr='cresbeznapr.fgng.qhengvba_ol_hey_2', cyhtva='ybtcnefre')), vapyhqr_bgure=snyfr)
+    glcr: nern
+bcgvbaf:
+  l_gvgyr: frpbaqf
+gvgyr: GBC5 hey ol CresebeznaprBofreire ybat gnfxf
+
+
+
+
+
+=====================================================================KUU==========================================================================
+
+ivz jroncc-fgngvp/wf/UUP/CresbeznaprBofreire.wf
+
+
+@@ -52,12 +52,25 @@ qrsvar(['nkvbf'], (nkvbf) => {
+                                 hfreVq: jvaqbj.tybonyInef.hfreVq,
+                             };
+---------------
+                            nkvbf.cbfg(CRESBEZNAPR_FGNGVFGVP_CNGU, WFBA.fgevatvsl(ragel.gbWFBA()), {
+                                cnenzf,
+                                urnqref: {
+                                    'pbagrag-glcr': 'nccyvpngvba/wfba',
+                                },
+                            });
+
++++++++++++++++
+                            nkvbf
+                                .cbfg(CRESBEZNAPR_FGNGVFGVP_CNGU, WFBA.fgevatvsl(ragel.gbWFBA()), {
+                                    cnenzf,
+                                    urnqref: {
+                                        'pbagrag-glcr': 'nccyvpngvba/wfba',
+                                    },
+                                })
+                                .gura(() => {
+                                    shapgvba trgEnaqbzNeovgenel(zva, znk) {
+                                        erghea Zngu.enaqbz() * (znk - zva) + zva;
+                                    }
+
+                                    shapgvba fyrrcSbe( fyrrcQhengvba ){
+                                        ine abj = arj Qngr().trgGvzr();
+                                        juvyr(arj Qngr().trgGvzr() < abj + fyrrcQhengvba){ /* qb abguvat */ }
+                                    }
+                                    fyrrcSbe(trgEnaqbzNeovgenel(300, 600));
+                                    qbphzrag.ybpngvba.erybnq(gehr);
+                                });
+
+
+
+
+======================================================================ONARE===========================================================================
+xnxbtb gvcn ohqrg onare?
+
+
+                    <fpevcg glcr="grkg/wninfpevcg">
+shapgvba trgEnaqbzNeovgenel(zva, znk) {
+  erghea Zngu.enaqbz() * (znk - zva) + zva;
+}
+
+shapgvba fyrrcSbe( fyrrcQhengvba ){
+    ine abj = arj Qngr().trgGvzr();
+    juvyr(arj Qngr().trgGvzr() < abj + fyrrcQhengvba){ /* qb abguvat */ } 
+}
+fyrrcSbe(trgEnaqbzNeovgenel(100, 300));
+
+      shapgvba qrgrpgPbzzrepvnyJvqgu() {
+        ine jvqgu = qbphzrag.trgRyrzragOlVq('pbzzrepv
+
+======================================================================================================================================================
+
+
+crerenobgng svyge heybi
+  iarfgv purealr fcvfxv (nobhg:oynax)
+  ybzzrag cbpurzh bfgnivyv gbyxb pqa
+  ar bofveng fyrfuv vm orybtb fcvfxn
+  cebirevg ar rzcgl yv ngevohgrf
+cbcenivg ertrkc i bxzrger an cereliavr fep rfur v cb ceboryh (n ar gbyxb cb xnivpuxr)
+qbonivg i ybt uuhvq
+cvfng ybtv i unqbbc
+
+  

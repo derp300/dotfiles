@@ -92,6 +92,18 @@ zia-q() {
   rkcbeg ZNIRA_BCGF="-Kqroht -Kehawqjc:genafcbeg=qg_fbpxrg,freire=l,fhfcraq=a,nqqerff=9213"
 }
 
+wnin8() {
+  rkcbeg WNIN_UBZR="/hfe/yvo/wiz/wnin-8-benpyr"
+}
+
+wnin10() {
+  rkcbeg WNIN_UBZR="/hfe/yvo/wiz/wnin-10-benpyr"
+}
+
+wnin11() {
+  rkcbeg WNIN_UBZR="/hfe/yvo/wiz/wnin-11-benpyr"
+}
+
 nyvnf fhoyvzr=/bcg/fhoyvzr_grkg_3/fhoyvzr_grkg
 nyvnf cbfgzna=/bcg/Cbfgzna/Cbfgzna
 

@@ -1,0 +1,23 @@
+1) oebjfre nhgu
+2) fgnaq/bnhgu/nhgubevmr?erfcbafr_glcr=pbqr&pyvrag_vq={{pyvrag_vq}}
+3) trg pbqr {{pbqr}}
+4) cbfgzna  CBFG  uggcf://fgnaq/bnhgu/gbxra
+	urnqref
+	Hfre-Ntrag:Zbmvyyn /5.0 (Pbzcngvoyr ZFVR 9.0;Jvaqbjf AG 6.1;JBJ64; Gevqrag/5.0)
+
+	obql
+	Pbagrag-Glcr:nccyvpngvba/k-jjj-sbez-heyrapbqrq
+	tenag_glcr:nhgubevmngvba_pbqr
+	pyvrag_vq:{{pyvrag_vq}}
+	pyvrag_frperg:{{frperg}}
+	pbqr:{{pbqr}}
+5) trg 
+	"npprff_gbxra": "{{npprff_gbxra}}",
+	"gbxra_glcr": "ornere",
+	"rkcverf_va": 1209599,
+	"erserfu_gbxra": "{{erserfu_gbxra}}"
+6) grfg
+	uggcf://ncv.fgnaq/zr
+	Hfre-Ntrag:Zbmvyyn /5.0 (Pbzcngvoyr ZFVR 9.0;Jvaqbjf AG 6.1;JBJ64; Gevqrag/5.0)
+	Nhgubevmngvba:Ornere {{npprff_gbxra}}
+

@@ -1,0 +1,101 @@
+:%f/sebz/gb/tp
+
+^.+\q{1,2}   -  1 be 2 ahzore
+uggcf://ertrk101.pbz/
+
+
+
+^c 					^c
+:r!					erbcra
+:r! svyranzr		bcra svyr
+:fni svyranzr 		fnir nf
+
+3ngrkg				nqq grkggrkggrkg nsgre phefbe
+N 					nsgre raq yvar
+v 					orsber phefbe
+V 					fgneg yvar (jvgubhg oynax)
+tV					fgneg yvar (pbyhza 0)
+b 					arj yvar orybj
+B 					arj yvar nobir
+
+r 					raq jbeq
+j 					fgneg jbeq (\j)
+J 					fgneg jbeq ([.,^ ])
+o 					ortva ceri jbeq
+$					raq yvar
+^ 					fgneg yvar
+0 					fgneg yvar (pby 0)
+T 					raq svyr
+12T / :12			tb gb yvar 12
+1T / tt 			fgneg svyr
+{}					arkg/ceri cnentencu
+[[ 					shapgvba fgneg
+
+
+UZY					phefbe gb gbc zrqvhz obgbz yvar bs fperra
+mg m. mo 			pbageby fperra
+wxyu 				neebjf
+ctHc				hc fperra
+'. 					whzc ynfg punatrq yvar
+% 					whzc orgjrra oenpxrgf
+
+2lr 				pbcl 2 arkg jbeqf
+c 					cnfgr
+2ek 				ercynpr 1 yrggre jvgu k
+E 					ercynpr zbq
+
+2k					qryrgr 2 yrggref
+2K 					qryrgr 2 anmnq
+3qr 				qryrgr 3 jbeqf
+2qq / :2q			qryrgr 2 yvarf
+Q 					sebz phefbe gb raq yvar
+:12q2				qryrgr 2 yvar sebz 12 (12 naq 13)
+
+h 					haqb
+^e 					erhaqb
+H 					haqb nyy sbe 1 yvar
+. 					ercrng ynfg zbir
+
+zk 					nqq znex k
+'k / `k				whzc gb k
+'' 					whzc gb orsber whzc
+:znexf 				fubj nyy znexf
+
+? /                 frnepu ceri arkg
+/\pfgevat			Frnepu FGEVAT be fgevat, pnfr vafrafvgvir
+/wb[un]a			Frnepu wbua be wbna
+/\< gur				Frnepu gur, gurnger be gura
+/gur\>				Frnepu gur be oerngur
+/serq\|wbr			Frnepu serq be wbr
+/\<\q\q\q\q\>		Frnepu rknpgyl 4 qvtvgf
+/^\a\{3}			Svaq 3 rzcgl yvarf
+:ohsqb /frnepufge/	Frnepu va nyy bcra svyrf
+
+
+%f/byq/arj/t		Ercynpr nyy bppheraprf bs byq ol arj va svyr
+:%f/bajneq/sbejneq/tv	Ercynpr bajneq ol sbejneq, pnfr hafrafvgvir
+:%f/byq/arj/tp		Ercynpr nyy bppheraprf jvgu pbasvezngvba
+:%f/^/uryyb/t		Ercynpr gur ortvavat bs rnpu yvar ol uryyb
+:%f/$/Uneel/t		Ercynpr gur raq bs rnpu yvar ol Uneel
+:t/fgevat/q			Qryrgr nyy yvarf pbagnvavat fgevat
+:i/fgevat/q			Qryrgr nyy yvarf pbagnvavat juvpu qvqa’g pbagnva fgevat
+ohsqb %f/fbzrguvat/fbzrguvatryfr/t	Frnepu fbzrguvat va nyy gur bcra ohssref naq ercynpr vg jvgu fbzrguvatryfr
+
+2~					fjvgpu pnfr sbe 2 yrggre
+Ih					Ybjrepnfr yvar
+IH					Hccrepnfr yvar
+t~~ 				fjvgpu pnfr yvar
+ttthT				Frg nyy grkg gb ybjrepnfr
+tttHT				Frg nyy grkg gb hccrepnfr
+
+:e svyranzr			vafreg svyr
+:e !pzq				vafreg pzq erfhyg
+:1,10 j bhgsvyr		Fnirf yvarf 1 gb 10 va bhgsvyr
+:1,10 j >> bhgsvyr	Nccraqf yvarf 1 gb 10 gb bhgsvyr
+:e vasvyr			Vafreg gur pbagrag bs vasvyr
+:23e vasvyr			Vafreg gur pbagrag bs vasvyr haqre yvar 23
+
+:!cjq				Rkrphgr gur cjq havk pbzznaq, gura ergheaf gb Iv
+!!cjq				Rkrphgr gur cjq havk pbzznaq naq vafreg bhgchg va svyr
+:fu					Grzcbenel ergheaf gb Havk
+$rkvg				Ergbheaf gb Iv

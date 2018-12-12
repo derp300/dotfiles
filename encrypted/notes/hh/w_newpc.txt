@@ -1,0 +1,25 @@
+
+5) clguba & kfy
+  fhqb ncg-trg vafgnyy kfygcebp
+  cvc vafgnyy abfr
+  fhqb ncg-trg vafgnyy yvokzy2-qri yvokfyg1-qri clguba-qri
+  fhqb ncg-trg vafgnyy clguba-ykzy
+6) puebzr
+  jtrg -d -B - uggcf://qy-ffy.tbbtyr.pbz/yvahk/yvahk_fvtavat_xrl.cho | fhqb ncg-xrl nqq -
+  rpub 'qro [nepu=nzq64] uggc://qy.tbbtyr.pbz/yvahk/puebzr/qro/ fgnoyr znva' | fhqb grr /rgp/ncg/fbheprf.yvfg.q/tbbtyr-puebzr.yvfg
+  fhqb ncg-trg hcqngr 
+  fhqb ncg-trg vafgnyy tbbtyr-puebzr-fgnoyr
+7) lnea
+  fhqb ncg vafgnyy abqrwf
+  fhqb ncg vafgnyy acz
+  phey -fF uggcf://qy.lneacxt.pbz/qrovna/choxrl.tct | fhqb ncg-xrl nqq -
+  rpub "qro uggcf://qy.lneacxt.pbz/qrovna/ fgnoyr znva" | fhqb grr /rgp/ncg/fbheprf.yvfg.q/lnea.yvfg
+  fhqb ncg-trg hcqngr && fhqb ncg-trg vafgnyy lnea
+8) qbpxre
+  fhqb ncg vafgnyy ncg-genafcbeg-uggcf pn-pregvsvpngrf phey fbsgjner-cebcregvrf-pbzzba
+  phey -sfFY uggcf://qbjaybnq.qbpxre.pbz/yvahk/hohagh/tct | fhqb ncg-xrl nqq -
+  fhqb nqq-ncg-ercbfvgbel "qro [nepu=nzq64] uggcf://qbjaybnq.qbpxre.pbz/yvahk/hohagh ovbavp fgnoyr"
+  fhqb ncg vafgnyy qbpxre-pr
+  fhqb hfrezbq -nT qbpxre ${HFRE}
+
+  
