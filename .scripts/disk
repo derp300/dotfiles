@@ -1,0 +1,52 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+#use utf8;
+use open ':std', ':encoding(UTF-8)';
+
+my $df_data;
+my $root;
+my $home;
+my $root_total;
+my $root_used;
+my $home_total;
+my $home_used;
+
+open (DF_DATA, 'df -h |') or die;
+while (<DF_DATA>) {
+     if (/(^.*\/$)/) {
+	$root = "$1";
+    }
+    if (/(^.*\/home)/) {
+	$home = "$1";
+        last;
+    }
+}
+close(DF_DATA);
+
+if (not defined($root)) {
+    exit(0);
+}
+elsif ($root !~ /\s(\d[^a-zA-Z]*)[a-zA-Z]\s*(\d[^a-zA-Z]*)[a-zA-Z]/) {
+	die "$root\n";
+}
+
+$root_total = $1;
+$root_used = $2;
+
+if (not defined($home)) {
+    exit(0);
+}
+elsif ($home !~ /\s(\d[^a-zA-Z]*)[a-zA-Z]\s*(\d[^a-zA-Z]*)[a-zA-Z]/) {
+	die "$home\n";
+}
+
+$home_total = $1;
+$home_used = $2;
+
+printf "root %.1fG\/%.1fG  home %.1fG\/%.1fG\n", $root_used, $root_total, $home_used, $home_total;
+printf "root %.1fG\/%.1fG  home %.1fG\/%.1fG\n", $root_used, $root_total, $home_used, $home_total;
+
+exit 0;
+

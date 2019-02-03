@@ -1,0 +1,324 @@
+- name: awesome arch setup
+  hosts: localhost
+  become: yes
+  #TODO split files
+  #TODO expect username and password
+  #TODO autodetect desktop and video
+  vars:
+    user: player
+    passwd: "123"
+    desktop: false
+    video: homeless
+  tasks:
+    - name: arch power
+      pacman:
+        update_cache: yes
+        upgrade: yes
+      when: false
+      tags: upgrade
+
+    - name: get docker
+      pacman:
+        name: docker
+        state: present
+
+    - name: create user
+      user:
+        name: "{{ user }}"
+        password: "{{ passwd }}"
+        groups:
+          - wheel
+          - audio
+          - docker
+        state: present
+
+    - name: add user to sudoers
+      lineinfile:
+        path: /etc/sudoers.d/{{ user }}
+        line: '{{ user }} ALL=(ALL) ALL'
+        create: yes
+        validate: 'visudo -cf %s'
+
+# synaptic
+    - name: synaptic
+      pacman:
+        name: xf86-input-synaptics
+        state: present
+      when: not desktop
+
+# video
+    - name: homeless graphics
+      pacman:
+        name: xf86-video-fbdev
+        state: present
+      when: video == "homeless"
+
+    - name: intel graphics
+      pacman:
+        name: xf86-video-intel
+        state: present
+      when: video == "intel"
+
+    - name: nvidia graphics
+      pacman:
+        name: xf86-video-nouveau
+        state: present
+      when: video == "nvidia"
+
+    - name: radeon graphics
+      pacman:
+        name: xf86-video-ati
+        state: present
+      #xf86-video-amdgpu
+      when: video == "radeon"
+
+# pacman packages
+    - name: pacman xorg-server
+      pacman:
+        name: xorg-server
+        state: present
+
+    - name: pacman xorg-xinit
+      pacman:
+        name: xorg-xinit
+        state: present
+
+    - name: pacman xorg-xprop
+      pacman:
+        name: xorg-xprop
+        state: present
+
+    - name: pacman xorg-xrandr
+      pacman:
+        name: xorg-xrandr
+        state: present
+
+    - name: pacman i3-wm
+      pacman:
+        name: i3-wm
+        state: present
+
+    - name: pacman i3blocks
+      pacman:
+        name: i3blocks
+        state: present
+
+    - name: pacman dmenu
+      pacman:
+        name: dmenu
+        state: present
+
+    - name: pacman lxappearance-gtk3
+      pacman:
+        name: lxappearance-gtk3
+        state: present
+
+    - name: pacman arc-gtk-theme
+      pacman:
+        name: arc-gtk-theme
+        state: present
+
+    - name: pacman acpi
+      pacman:
+        name: acpi
+        state: present
+
+    - name: pacman rxvt-unicode
+      pacman:
+        name: rxvt-unicode
+        state: present
+
+    - name: pacman compton
+      pacman:
+        name: compton
+        state: present
+
+    - name: pacman lxrandr-gtk3
+      pacman:
+        name: lxrandr-gtk3
+        state: present
+
+    - name: pacman feh
+      pacman:
+        name: feh
+        state: present
+
+    - name: pacman sysstat
+      pacman:
+        name: sysstat
+        state: present
+
+    - name: pacman firefox
+      pacman:
+        name: firefox
+        state: present
+
+    - name: pacman networkmanager
+      pacman:
+        name: networkmanager
+        state: present
+
+    - name: pacman networkmanager-openvpn
+      pacman:
+        name: networkmanager-openvpn
+        state: present
+
+    - name: pacman network-manager-applet
+      pacman:
+        name: network-manager-applet
+        state: present
+
+    - name: pacman terminator
+      pacman:
+        name: terminator
+        state: present
+
+#    - name: pacman wget
+#      pacman:
+#        name: wget
+#        state: present
+#      tags: pacman_packages
+#
+#    - name: pacman yajl
+#      pacman:
+#        name: yajl
+#        state: present
+#      tags: pacman_packages
+
+# yaourt packages
+#    - name: clone yaourt1
+#      become_user: "{{ user }}"
+#      git:
+#        repo: 'https://aur.archlinux.org/package-query.git'
+#        dest: "/tmp/package-query"
+#      tags: aur
+#
+#    - name: clone yaourt2
+#      become_user: "{{ user }}"
+#      git:
+#        repo: 'https://aur.archlinux.org/yaourt.git'
+#        dest: "/tmp/yaourt"
+#      tags: aur
+# 
+#    - name: install yaourt1
+#      become_user: "{{ user }}"
+#      command: makepkg -si --noconfirm
+#      args:
+#        chdir: /tmp/package-query
+#      tags: aur
+#      when: false
+#
+#    - name: install yaourt2
+#      become_user: "{{ user }}"
+#      command: makepkg -si --noconfirm
+#      args:
+#        chdir: /tmp/yaourt
+#      tags: aur
+#      when: false
+#
+#    - name: aur packages
+#      become_user: "{{ user }}"
+#      command: yaourt -S gxkb --noconfirm
+#      tags: aur_packages
+#      when: false
+
+# get configs from github
+    - name: prepare dotfiles dir
+      file:
+        state: absent
+        path: "/home/{{ user }}/.dotfiles"
+      tags: get_config
+
+    - name: clone dotfiles repo
+      become_user: "{{ user }}"
+      git:
+        repo: 'https://github.com/derp300/dotfiles'
+        dest: "/home/{{ user }}/.dotfiles"
+      tags: get_config
+
+# setup configs
+    - name: setup synaptic
+      copy:
+        src: /home/{{ user }}/.dotfiles/etc/X11/xorg.conf.d/70-synaptics.conf
+        dest: /etc/X11/xorg.conf.d/70-synaptics.conf
+      when: not desktop
+      tags: system_config
+
+    - name: prepare locales
+      copy:
+        src: /home/{{ user }}/.dotfiles/etc/locale.gen
+        dest: /etc/locale.gen
+      tags: system_config
+
+    - name: setup locales
+      command: locale-gen
+#      locale_gen:
+#        name:
+#          - ru_RU.UTF-8
+#          - en_US.UTF-8
+#        state: present
+      tags: system_config
+ 
+    - name: vconsole
+      copy:
+        src: /home/{{ user }}/.dotfiles/etc/vconsole.conf
+        dest: /etc/vconsole.conf
+      tags: system_config
+ 
+    - name: sudovim
+      copy:
+        src: /home/{{ user }}/.dotfiles/etc/profile.d/editor.sh
+        dest: /etc/profile.d/editor.sh
+        mode: a+x
+      tags: system_config
+
+    - name: link configs
+      become_user: "{{ user }}"
+      file:
+        src: /home/{{ user }}/.dotfiles/{{ item }}
+        dest: /home/{{ user }}/{{ item }}
+        state: link
+        force: yes
+      with_items:
+        - .bash_profile
+        - .bashrc
+        - .xinitrc
+        - .Xresources
+        - .scripts
+        - .fonts
+        - .gtkrc-2.0
+      tags: user_config
+
+    - name: create .config
+      become_user: "{{ user }}"
+      file:
+        path: /home/{{ user }}/.config
+        state: directory
+      tags: user_config
+
+    - name: link configs
+      become_user: "{{ user }}"
+      file:
+        src: /home/{{ user }}/.dotfiles/.config/{{ item }}
+        dest: /home/{{ user }}/.config/{{ item }}
+        state: link
+        force: yes
+      with_items:
+        - compton
+        - gxkb
+        - i3
+        - i3blocks
+        - terminator
+        - gtk-3.0
+      tags: user_config
+
+    - name: set timezone
+      timezone:
+        name: Europe/Moscow
+      tags: timezone
+
+    - name: enable network manager daemon
+      systemd:
+        name: NetworkManager
+        enabled: yes
+

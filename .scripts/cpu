@@ -1,0 +1,38 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+#use utf8;
+use open ':std', ':encoding(UTF-8)';
+
+my $warn;
+my $crit;
+my $cpu_stat;
+my $usr;
+my $sys;
+my $io;
+
+open (MPSTAT, 'mpstat 1 1 | grep Average |') or die;
+$cpu_stat = <MPSTAT>; 
+close(MPSTAT);
+
+if (not defined($cpu_stat)) {
+    exit(0);
+}
+elsif ($cpu_stat !~ /(\d+.\d+)\s*(\d+.\d+)\s*(\d+.\d+)\s*(\d+.\d+)\s*(\d+.\d+)\s*(\d+.\d+)\s*(\d+.\d+)\s*(\d+.\d+)\s*(\d+.\d+)\s*(\d+.\d+)/) {
+	die "$cpu_stat\n";
+}
+
+$usr = $1;
+$sys = $3;
+$io = $4;
+
+printf "us:%.0f%% sy:%.0f%% io:%.0f%%\n", $usr, $sys, $io;
+printf "us:%.0f%% sy:%.0f%% io:%.0f%%\n", $usr, $sys, $io;
+
+if ($usr > 80 || $sys > 20  || $io > 15) {
+	print "#FFFC00\n";
+}
+
+exit 0;
+

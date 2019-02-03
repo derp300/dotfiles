@@ -1,0 +1,29 @@
+URxvt.scrollBar: false
+URxvt*foreground: #839496
+URxvt*background: #09090d
+URxvt*cursor: #839496
+URxvt*color0: #353540
+URxvt*color8: #545466
+URxvt*color1: #8c5760
+URxvt*color9: #b26f7a
+URxvt*color2: #7b8c58
+URxvt*color10: #9db270
+URxvt*color3: #8c6e43
+URxvt*color11: #b28c55
+URxvt*color4: #58698c
+URxvt*color12: #7086b2
+URxvt*color5: #7b5e7d
+URxvt*color13: #9c77b2
+URxvt*color6: #66808c
+URxvt*color14: #82a2b2
+URxvt*color7: #8c8b8b
+URxvt*color15: #b8b8c8
+URxvt.font: xft:monaco:size=11
+!URxvt.font: xft:Monospace Regular:size=10
+!URxvt.font: xft:san_francisco_regular:size=11
+URxvt.cursorBlink: 1
+!URxvt.letterSpace: -1
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt*geometry: 255x96
+

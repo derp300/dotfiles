@@ -1,0 +1,57 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+#use utf8;
+use open ':std', ':encoding(UTF-8)';
+
+my $free_data;
+my $mem;
+my $swap;
+my $mem_total;
+my $mem_used;
+my $swap_total;
+my $swap_used;
+
+open (FREE_DATA, 'free -m |') or die;
+while (<FREE_DATA>) {
+     if (/(Mem.*)/) {
+	$mem = "$1";
+    }
+    if (/(Swap.*)/) {
+	$swap = "$1";
+        last;
+    }
+}
+close(FREE_DATA);
+
+if (not defined($mem)) {
+    exit(0);
+}
+elsif ($mem !~ /(\d+)\s+(\d+)/) {
+	die "$mem\n";
+}
+
+$mem_total = $1;
+$mem_used = $2;
+
+if (not defined($swap)) {
+    exit(0);
+}
+elsif ($swap !~ /(\d+)\s+(\d+)/) {
+	die "$swap\n";
+}
+
+$swap_total = $1;
+$swap_used = $2;
+
+printf "%.1fG\/%.1fG\n", $mem_used/1024, $mem_total/1024;
+printf "%.1fG\/%.1fG\n", $mem_used/1024, $mem_total/1024;
+
+if ($mem_used > 0.95 * $mem_total) {
+	print "#FF0000\n";
+	exit 33;
+}
+
+exit 0;
+

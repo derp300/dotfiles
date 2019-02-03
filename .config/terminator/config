@@ -1,0 +1,70 @@
+[global_config]
+  title_transmit_bg_color = "#dfdfdf"
+  title_transmit_fg_color = "#6f6f6f"
+  window_state = maximise
+[keybindings]
+  broadcast_all = None
+  broadcast_group = None
+  broadcast_off = None
+  close_term = <Primary>w
+  close_window = None
+  copy = <Primary><Shift>c
+  cycle_next = None
+  cycle_prev = None
+  edit_window_title = None
+  full_screen = None
+  go_down = <Primary>Down
+  go_left = <Primary>Left
+  go_next = None
+  go_prev = None
+  go_right = <Primary>Right
+  go_up = <Primary>Up
+  group_all = None
+  group_all_toggle = None
+  group_tab = None
+  hide_window = None
+  insert_number = None
+  insert_padded = None
+  layout_launcher = None
+  move_tab_left = None
+  move_tab_right = None
+  new_tab = <Primary>t
+  new_terminator = None
+  new_window = None
+  next_tab = <Primary>Tab
+  prev_tab = <Primary><Shift>Tab
+  reset = None
+  reset_clear = None
+  resize_down = <Primary><Shift>Down
+  resize_left = <Primary><Shift>Left
+  resize_right = <Primary><Shift>Right
+  rotate_ccw = <Primary><Shift>r
+  rotate_cw = None
+  scaled_zoom = None
+  split_horiz = <Primary>bracketright
+  split_vert = <Primary>bracketleft
+  toggle_zoom = <Primary><Shift>z
+  ungroup_all = None
+  ungroup_tab = None
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#09090d"
+    background_darkness = 0.85
+    background_type = transparent
+    cursor_color = "#839496"
+    font = Monospace 12
+    foreground_color = "#839496"
+    palette = "#353540:#8c5760:#7b8c58:#8c6e43:#58698c:#7b5e7d:#66808c:#8c8b8b:#545466:#b26f7a:#9db270:#b28c55:#7086b2:#9c77b2:#82a2b2:#b8b8c8"
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
