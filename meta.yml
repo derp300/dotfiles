@@ -250,7 +250,7 @@
         dest: /etc/locale.gen
       tags: system_config
 
-    - name: setup locales
+    - name: gen locales
       command: locale-gen
 #      locale_gen:
 #        name:
@@ -259,6 +259,12 @@
 #        state: present
       tags: system_config
  
+    - name: setup locales
+      copy:
+        src: /home/{{ user }}/.dotfiles/etc/locale.conf
+        dest: /etc/locale.conf
+      tags: system_config
+
     - name: vconsole
       copy:
         src: /home/{{ user }}/.dotfiles/etc/vconsole.conf
