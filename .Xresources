@@ -18,7 +18,7 @@ URxvt*color6: #66808c
 URxvt*color14: #82a2b2
 URxvt*color7: #8c8b8b
 URxvt*color15: #b8b8c8
-URxvt.font: xft:monaco:size=11
+URxvt.font: xft:Hack:size=11
 !URxvt.font: xft:Monospace Regular:size=10
 !URxvt.font: xft:san_francisco_regular:size=11
 URxvt.cursorBlink: 1

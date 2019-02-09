@@ -1,36 +1,42 @@
+#ANSIBLE_NOCOWS=1 ansible-playbook meta.yml --extra-vars "user=testuser passwd=123 desktop=false video=homeless" --tags "update,packages,configuration,newuser,yay"
 - name: awesome arch setup
   hosts: localhost
   become: yes
   #TODO split files
-  #TODO expect username and password
   #TODO autodetect desktop and video
-  vars:
-    user: player
-    passwd: "123"
-    desktop: false
-    video: homeless
   tasks:
-    - name: arch power
+    - name: Syu
       pacman:
         update_cache: yes
         upgrade: yes
       when: false
-      tags: upgrade
+      tags: update
 
-    - name: get docker
+    - name: openssh docker
       pacman:
-        name: docker
+        name:
+          - openssh
+          - docker
         state: present
+      tags: packages
+
+    - name: enable service docker and ensure it is not masked
+      systemd:
+        name: docker
+        enabled: yes
+        masked: no
+      tags: packages
 
     - name: create user
       user:
         name: "{{ user }}"
-        password: "{{ passwd }}"
+        password: "{{ passwd | password_hash('sha512')  }}"
         groups:
           - wheel
-          - audio
           - docker
+        generate_ssh_key: yes
         state: present
+      tags: newuser
 
     - name: add user to sudoers
       lineinfile:
@@ -38,6 +44,7 @@
         line: '{{ user }} ALL=(ALL) ALL'
         create: yes
         validate: 'visudo -cf %s'
+      tags: newuser
 
 # synaptic
     - name: synaptic
@@ -45,6 +52,7 @@
         name: xf86-input-synaptics
         state: present
       when: not desktop
+      tags: packages
 
 # video
     - name: homeless graphics
@@ -52,18 +60,21 @@
         name: xf86-video-fbdev
         state: present
       when: video == "homeless"
+      tags: packages
 
     - name: intel graphics
       pacman:
         name: xf86-video-intel
         state: present
       when: video == "intel"
+      tags: packages
 
     - name: nvidia graphics
       pacman:
         name: xf86-video-nouveau
         state: present
       when: video == "nvidia"
+      tags: packages
 
     - name: radeon graphics
       pacman:
@@ -71,170 +82,88 @@
         state: present
       #xf86-video-amdgpu
       when: video == "radeon"
+      tags: packages
 
 # pacman packages
-    - name: pacman xorg-server
+    - name: pacman bigger
       pacman:
-        name: xorg-server
-        state: present
-
-    - name: pacman xorg-xinit
-      pacman:
-        name: xorg-xinit
-        state: present
-
-    - name: pacman xorg-xprop
-      pacman:
-        name: xorg-xprop
-        state: present
-
-    - name: pacman xorg-xrandr
-      pacman:
-        name: xorg-xrandr
-        state: present
-
-    - name: pacman i3-wm
-      pacman:
-        name: i3-wm
-        state: present
-
-    - name: pacman i3blocks
-      pacman:
-        name: i3blocks
-        state: present
-
-    - name: pacman dmenu
-      pacman:
-        name: dmenu
-        state: present
-
-    - name: pacman lxappearance-gtk3
-      pacman:
-        name: lxappearance-gtk3
-        state: present
-
-    - name: pacman arc-gtk-theme
-      pacman:
-        name: arc-gtk-theme
-        state: present
-
-    - name: pacman acpi
-      pacman:
-        name: acpi
-        state: present
-
-    - name: pacman rxvt-unicode
-      pacman:
-        name: rxvt-unicode
-        state: present
-
-    - name: pacman compton
-      pacman:
-        name: compton
-        state: present
-
-    - name: pacman lxrandr-gtk3
-      pacman:
-        name: lxrandr-gtk3
-        state: present
-
-    - name: pacman feh
-      pacman:
-        name: feh
-        state: present
-
-    - name: pacman sysstat
-      pacman:
-        name: sysstat
-        state: present
-
-    - name: pacman firefox
-      pacman:
-        name: firefox
-        state: present
-
-    - name: pacman networkmanager
-      pacman:
-        name: networkmanager
-        state: present
-
-    - name: pacman networkmanager-openvpn
-      pacman:
-        name: networkmanager-openvpn
-        state: present
-
-    - name: pacman network-manager-applet
-      pacman:
-        name: network-manager-applet
-        state: present
-
-    - name: pacman terminator
-      pacman:
-        name: terminator
-        state: present
-
-#    - name: pacman wget
-#      pacman:
-#        name: wget
-#        state: present
-#      tags: pacman_packages
-#
-#    - name: pacman yajl
-#      pacman:
-#        name: yajl
-#        state: present
-#      tags: pacman_packages
+        name:
+          - xorg-server
+          - xorg-xinit
+          - xorg-xprop
+          - xorg-xrandr
+          - i3-wm
+          - i3blocks
+          - dmenu
+          - rofi
+          - lxappearance-gtk3
+          - arc-gtk-theme
+          - acpi
+          - rxvt-unicode
+          - compton
+          - arandr
+          - lxrandr-gtk3
+          - feh
+          - sysstat
+          - firefox
+          - networkmanager
+          - networkmanager-openvpn
+          - network-manager-applet
+          - terminator
+          - xorg-xbacklight
+          - xbindkeys
+          - i3lock
+          - pulseaudio
+          - pavucontrol
+          - ttf-dejavu
+          - ttf-hack
+          - adobe-source-sans-pro-fonts
+          - cowsay
+          - fortune-mod
+          - udisks2
+          - udevil
+          - telegram-desktop
+          - ranger
+          - imagemagick
+          - xclip
+      tags: packages
 
 # yaourt packages
-#    - name: clone yaourt1
-#      become_user: "{{ user }}"
-#      git:
-#        repo: 'https://aur.archlinux.org/package-query.git'
-#        dest: "/tmp/package-query"
-#      tags: aur
-#
-#    - name: clone yaourt2
-#      become_user: "{{ user }}"
-#      git:
-#        repo: 'https://aur.archlinux.org/yaourt.git'
-#        dest: "/tmp/yaourt"
-#      tags: aur
-# 
-#    - name: install yaourt1
-#      become_user: "{{ user }}"
-#      command: makepkg -si --noconfirm
-#      args:
-#        chdir: /tmp/package-query
-#      tags: aur
-#      when: false
-#
-#    - name: install yaourt2
-#      become_user: "{{ user }}"
-#      command: makepkg -si --noconfirm
-#      args:
-#        chdir: /tmp/yaourt
-#      tags: aur
-#      when: false
-#
-#    - name: aur packages
-#      become_user: "{{ user }}"
-#      command: yaourt -S gxkb --noconfirm
-#      tags: aur_packages
-#      when: false
+    - name: install yay
+      git:
+        repo: "https://aur.archlinux.org/yay.git"
+        dest: "/tmp/yay"
+      become: yes
+      become_user: "{{ user }}"
+      tags: yay
+
+    - name: install yay2
+      command: makepkg -si --noconfirm
+      args:
+        chdir: "/tmp/yay"
+      become: yes
+      become_user: "{{ user }}"
+      tags: yay
+
+    - name: yay packages
+      command: yay -S google-chrome gxkb xss-lock-git alsi sublime-text-dev --noconfirm
+      become: yes
+      become_user: "{{ user }}"
+      tags: yay
 
 # get configs from github
     - name: prepare dotfiles dir
       file:
         state: absent
         path: "/home/{{ user }}/.dotfiles"
-      tags: get_config
+      tags: configuration
 
     - name: clone dotfiles repo
       become_user: "{{ user }}"
       git:
         repo: 'https://github.com/derp300/dotfiles'
         dest: "/home/{{ user }}/.dotfiles"
-      tags: get_config
+      tags: configuration
 
 # setup configs
     - name: setup synaptic
@@ -242,13 +171,19 @@
         src: /home/{{ user }}/.dotfiles/etc/X11/xorg.conf.d/70-synaptics.conf
         dest: /etc/X11/xorg.conf.d/70-synaptics.conf
       when: not desktop
-      tags: system_config
+      tags: configuration
 
     - name: prepare locales
       copy:
         src: /home/{{ user }}/.dotfiles/etc/locale.gen
         dest: /etc/locale.gen
-      tags: system_config
+      tags: configuration
+
+    - name: handle lid seitch
+      copy:
+        src: /home/{{ user }}/.dotfiles/etc/systemd/logind.conf
+        dest: /etc/systemd/logind.conf
+      tags: configuration
 
     - name: gen locales
       command: locale-gen
@@ -257,26 +192,26 @@
 #          - ru_RU.UTF-8
 #          - en_US.UTF-8
 #        state: present
-      tags: system_config
+      tags: configuration
  
     - name: setup locales
       copy:
         src: /home/{{ user }}/.dotfiles/etc/locale.conf
         dest: /etc/locale.conf
-      tags: system_config
+      tags: configuration
 
     - name: vconsole
       copy:
         src: /home/{{ user }}/.dotfiles/etc/vconsole.conf
         dest: /etc/vconsole.conf
-      tags: system_config
+      tags: configuration
  
     - name: sudovim
       copy:
         src: /home/{{ user }}/.dotfiles/etc/profile.d/editor.sh
         dest: /etc/profile.d/editor.sh
         mode: a+x
-      tags: system_config
+      tags: configuration
 
     - name: link configs
       become_user: "{{ user }}"
@@ -290,17 +225,21 @@
         - .bashrc
         - .xinitrc
         - .Xresources
+        - .xbindkeysrc
         - .scripts
         - .fonts
         - .gtkrc-2.0
-      tags: user_config
+        - .psqlrc
+        - .vimrc
+        - .vim
+      tags: configuration
 
     - name: create .config
       become_user: "{{ user }}"
       file:
         path: /home/{{ user }}/.config
         state: directory
-      tags: user_config
+      tags: configuration
 
     - name: link configs
       become_user: "{{ user }}"
@@ -316,15 +255,16 @@
         - i3blocks
         - terminator
         - gtk-3.0
-      tags: user_config
+        - rofi
+      tags: configuration
 
     - name: set timezone
       timezone:
         name: Europe/Moscow
-      tags: timezone
+      tags: configuration
 
     - name: enable network manager daemon
       systemd:
         name: NetworkManager
         enabled: yes
-
+      tags: configuration

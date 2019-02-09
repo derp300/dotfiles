@@ -1,0 +1,8 @@
+! Rofi config file
+rofi.lines: 12
+rofi.font: Hack 12
+rofi.show-icons: true
+rofi.theme: ~/.config/rofi/theme.rasi
+rofi.display-window: Window
+rofi.display-drun: Search
+

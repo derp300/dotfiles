@@ -1,95 +1,47 @@
-#!/usr/bin/perl
+#!/bin/bash
 
-use strict;
-use warnings;
-#use utf8;
-use open ':std', ':encoding(UTF-8)';
+IFS=$'\n'
+bat_data=($(acpi -b))
 
-my $acpi;
-my $status;
-my $percent;
-my $ac_adapt;
-my $full_text;
-my $short_text;
-my $bat_number = $ENV{BAT_NUMBER} || 0;
-my $label = $ENV{LABEL} || "";
+IFS=' '
+result=""
+max=0
+total=0
+total_n=0
 
-# read the first line of the "acpi" command output
-open (ACPI, "acpi -b 2>/dev/null| grep 'Battery $bat_number' |") or die;
-$acpi = <ACPI>;
-close(ACPI);
+for bat_info in "${bat_data[@]}"; do
+  bat=(${bat_info})
+  bat_status=${bat[2]::-1}
+  bat_percent=${bat[3]//[!0-9]/}
+  bat_time=${bat[4]}
 
-# fail on unexpected output
-if (not defined($acpi)) {
-    # don't print anything to stderr if there is no battery
-    exit(0);
-}
-elsif ($acpi !~ /: ([\w\s]+), (\d+)%/) {
-	die "$acpi\n";
-}
+  if [ $bat_status = "Charging" ]; then
+    result+=""
+  elif [ $bat_percent -gt 90 ]; then
+    result+=" "
+  elif [ $bat_percent -gt 60 ]; then
+    result+=" "
+  elif [ $bat_percent -gt 25 ]; then
+    result+=" "
+  elif [ $bat_percent -gt 15 ]; then
+    result+=" "
+  else
+    result+=" "
+  fi
 
-$status = $1;
-$percent = $2;
-#$full_text = "$label$percent%";
-$full_text = "";
+  result+=" $bat_percent% $bat_time "
+  max=$((max + 100))
+  total=$((total + bat_percent))
+done
 
-if ($status eq 'Discharging') {
-	if ($percent > 20) {
-		$full_text .= '';
-	} else {
-		$full_text .= '';
-	}
-} elsif ($status eq 'Charging') {
-	$full_text .= '';
-} elsif ($status eq 'Full') {
-	$full_text .= '';
-} elsif ($status eq 'Unknown') {
-	open (AC_ADAPTER, "acpi -a |") or die;
-	$ac_adapt = <AC_ADAPTER>;
-	close(AC_ADAPTER);
+total_n=$((100*total/max))
 
-	if ($ac_adapt =~ /: ([\w-]+)/) {
-		$ac_adapt = $1;
+echo "${result::-1}"
+echo "${result::-1}"
 
-		if ($ac_adapt eq 'on-line') {
-			$full_text .= ' CHR';
-		} elsif ($ac_adapt eq 'off-line') {
-			$full_text .= ' DIS';
-		}
-	}
-}
-
-$full_text .= " $label$percent%";
-
-$short_text = $full_text;
-
-if ($acpi =~ /(\d\d:\d\d):/) {
-	$full_text .= " $1";
-}
-
-# print text
-print "$full_text\n";
-print "$short_text\n";
-
-# consider color and urgent flag only on discharge
-if ($status eq 'Discharging') {
-
-	if ($percent < 21) {
-		print "#FF0000\n";
-		exit 33;
-	} 
-	#	elsif ($percent < 40) {
-	#	print "#FFAE00\n";
-	#} elsif ($percent < 60) {
-	#		print "#FFF600\n";
-	#} elsif ($percent < 185) {
-	#		print "#A8FF00\n";
-	#}
-
-	#if ($percent < 5) {
-	#	exit(33);
-	#}
-}
-
-exit(0);
+if [ $((total_n)) -lt 10 ]; then
+  exit 33
+elif [ $((total_n)) -lt 25 ]; then
+  echo "#FFAE00"
+fi
 
