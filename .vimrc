@@ -1,18 +1,72 @@
-"utf
-set encoding=UTF-8
-
-"leader
-let mapleader = " "
-
-"nocompatible
+" nocompatible
 set nocompatible
 
-"whitespaces
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:␣
-"set list
+" utf
+set encoding=UTF-8
 
-"tabs
-"filetype indent off
+" backup
+if empty(glob('~/.vim/.backup'))
+  silent !mkdir -p ~/.vim/.backup
+endif
+" https://vimhelp.org/editing.txt.html#backup
+" если будешь выставлять, то проверь сколько будет весить для большого файла
+" yes 'Some text' | head -n 1000000 > large
+set nobackup " на маке не работает
+set backupdir=~/.vim/.backup//
+
+" swap
+if empty(glob('~/.vim/.swap'))
+  silent !mkdir -p ~/.vim/.swap
+endif
+set swapfile
+set directory=~/.vim/.swap//
+
+" undofile
+if empty(glob('~/.vim/.undo'))
+  " TODO сделать права 700
+  silent !mkdir -p ~/.vim/.undo
+endif
+set noundofile " на маке не работает
+set undodir=~/.vim/.undo//
+
+" filebrowser pretty
+let g:netrw_banner=0         " прячем стремный банер
+let g:netrw_browse_split=0   " открыть в текущем окне
+let g:netrw_altv=1           " открывать сплиты справа?
+let g:netrw_liststyle=3      " tree view
+" let g:netrw_list_hide=netrw_gitignore#Hide()
+" let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" caret ricing
+set ttimeoutlen=10 " Понижаем задержку ввода escape последовательностей
+let &t_SI.="\e[5 q" " SI = режим вставки
+let &t_SR.="\e[3 q" " SR = режим замены
+let &t_EI.="\e[1 q" " EI = нормальный режим
+" 1 - мигающий прямоугольник
+" 2 - обычный прямоугольник
+" 3 - мигающее подчёркивание
+" 4 - просто подчёркивание
+" 5 - мигающая вертикальная черта
+" 6 - просто вертикальная черта
+
+set wildmenu                 " автодополнение вообще всего?
+set wrap 
+set cursorline
+set colorcolumn=121
+set number "relativenumber
+set hidden                   " чтобы можно было открывать новые если не сохранен текущий
+set path+=**
+
+" whitespaces
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:␣
+" set list
+
+" statusline
+set laststatus=2
+set ruler
+
+" tabs
+" filetype indent off
 filetype plugin on
 set tabstop=2
 set softtabstop=0
@@ -20,56 +74,11 @@ set shiftwidth=0
 set expandtab
 set smartindent
 
-"line numbers
-set number relativenumber
-
-"search
+" search
 set ignorecase
 set smartcase
 set hlsearch
 set incsearch
-:nmap <silent><expr> <Leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
-
-"backup,swap
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
-
-"wrap
-set wrap linebreak nolist
-"set nowrap
-set textwidth=120
-
-"color guides
-set cursorline
-set colorcolumn=120
-
-"caret ricing
-set ttimeoutlen=10 "Понижаем задержку ввода escape последовательностей
-let &t_SI.="\e[5 q" "SI = режим вставки
-let &t_SR.="\e[3 q" "SR = режим замены
-let &t_EI.="\e[1 q" "EI = нормальный режим
-"1 - мигающий прямоугольник
-"2 - обычный прямоугольник
-"3 - мигающее подчёркивание
-"4 - просто подчёркивание
-"5 - мигающая вертикальная черта
-"6 - просто вертикальная черта
-
-"quickfix hotkeys
-"map <F3> :cn<Cr>zvzz:cc<Cr>
-"map <S-F3> :cp<Cr>zvzz:cc<Cr>
-map <F3> :cn<Cr>
-map <S-F3> :cp<Cr>
-map <F4> :cp<Cr>
-
-"buffers
-set hidden
-nmap <Leader>n :bn<Cr>
-nmap <Leader>p :bp<Cr>
-nmap <Leader>t :enew<CR>
-nmap <Leader>q :bd!<CR>
-
-
 
 "-------------------------------------------------------------------------------
 "Plugins
@@ -80,96 +89,120 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-":PlugInstall
+":PlugUpgrade обновить саму плагильницу
+":PlugInstall установить все че можно
+":PlugUpdate  обновить все плагины
+":PlugClean   удалить лишнее
 call plug#begin('~/.vim/plugged')
 
-Plug 'mhinz/vim-startify'
-Plug 'preservim/nerdtree'
-
+" Colorschemas
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'blueshirts/darcula'
 Plug 'arcticicestudio/nord-vim'
+Plug 'sjl/badwolf'
+Plug 'morhetz/gruvbox'
 
-Plug 'vim-airline/vim-airline'
-"https://github.com/powerline/fonts
-Plug 'ryanoasis/vim-devicons'
-"https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts
-"brew tap homebrew/cask-fonts
-"brew cask install font-hack-nerd-font
-"brew cask install font-dejavusansmono-nerd-font
+" Language server
+" Plug 'prabirshrestha/vim-lsp'       " это коре для следующей хуйни, само по себе типа тяжело юзать
+" Plug 'mattn/vim-lsp-settings'       " хуй пойми, но похоже позволяет устанавливать langserver
+" :LspInstallServer pyright-langserver
+" sudo mkdir -p /usr/local/bin
+" sudo ln -s /Users/username/.local/share/vim-lsp-settings/servers/pyright-langserver/pyright-langserver /usr/local/bin/pyright-langserver
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim', {'type': 'opt'}
+" Linter
+Plug 'dense-analysis/ale'
 
-Plug 'drmingdrmer/vim-toggle-quickfix'
-
-Plug 'christoomey/vim-system-copy'
+" Find
+" требует установленный fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " позволяет искать файлы :FZF
+" требует установленный ripgrep
+Plug 'junegunn/fzf.vim', {'type': 'opt'}             " искать по содержимому :Rg
 
 call plug#end()
 
-
+"-------------------------------------------------------------------------------
+" Colorscheme
+"----------------------------
+colorscheme gruvbox
 
 "-------------------------------------------------------------------------------
-"Toggle quickfix
+" Ale
 "----------------------------
 
-nmap <Leader>l <Plug>window:quickfix:loop
-
+" let g:ale_fixers = {
+" \   '*': [],
+" \   'python': ['autopep8'],
+" \   'json': ['jq'],
+" \}
+let g:ale_completion_enabled = 1
+let g:ale_completion_delay = 0
 
 "-------------------------------------------------------------------------------
-"Colorscheme
+" Kay binding
 "----------------------------
 
-"colorscheme
-"colorscheme nord
-colorscheme darcula
-"colorscheme sublimemonokai
+function! CloseAllBuffersButCurrentSoft()
+  let curr = bufnr("%")
+  let last = bufnr("$")
 
+  if curr > 1    | silent! execute "1,".(curr-1)."bd"     | endif
+  if curr < last | silent! execute (curr+1).",".last."bd" | endif
+endfunction
 
-"-------------------------------------------------------------------------------
-"Airline
-"----------------------------
+function! CloseAllBuffersButCurrentHard()
+  let curr = bufnr("%")
+  let last = bufnr("$")
 
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#keymap#enabled = 0
-let g:airline_section_z = "\ue0a1:%l/%L Col:%c"
-let g:Powerline_symbols='unicode'
+  if curr > 1    | silent! execute "1,".(curr-1)."bd!"     | endif
+  if curr < last | silent! execute (curr+1).",".last."bd!" | endif
+endfunction
 
+" leader default \
+" let mapleader = " "
 
-"-------------------------------------------------------------------------------
-"NerdTree
-"----------------------------
+" buffers
+nmap <Leader>k :bn<Cr>
+nmap <Leader>j :bp<Cr>
+nmap <Leader>l :ls<Cr>
+nmap <Leader>t :enew<CR>
+nmap <Leader>q :bd<CR>
+nmap <Leader><S-q> :bd!<CR>
 
-map <C-n> :NERDTreeToggle<CR>
+" quickfix hotkeys
+nmap <Leader>c :cl<Cr>
+nmap <Leader>g :cc 
+map <F3> :cn<Cr>
+map <S-F3> :cp<Cr>
 
+nmap <silent><expr> <Leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
+nmap <Leader>w :call CloseAllBuffersButCurrentSoft()<CR>
+nmap <Leader><S-w> :call CloseAllBuffersButCurrentHard()<CR>
+map <Leader>r :e<Cr>
+map <Leader><S-r> :e!<Cr>
+map <Leader>e :Ex<Cr>
+map <Leader>f :FZF<Cr>
+map <Leader><S-f> :Rg<Cr>
 
-"-------------------------------------------------------------------------------
-"FZF
-"----------------------------
+" copy
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
 
-nnoremap <C-p> :FZF<CR>
-nnoremap <Leader>b :Buffers<CR>
+" run scripts
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3.9' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3.9' shellescape(@%, 1)<CR>
 
+" very magic
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
 
-"-------------------------------------------------------------------------------
-"Startify
-"----------------------------
-
-let g:startify_session_dir = '~/.vim/sessions'
-
-let g:startify_lists = [
-  \ { 'header': ['   MRU'],            'type': 'files' },
-  \ { 'header': ['   MRU '. getcwd()], 'type': 'dir' },
-  \ { 'header': ['   Sessions'],       'type': 'sessions' },
-  \ { 'header': ['   Bookmarks'],      'type': 'bookmarks' },
-  \ { 'header': ['   Commands'],       'type': 'commands' },
-\]
-
-
-
-
-
-
+" ALE
+map <Leader>b :ALEGoToDefinition<Cr>
+map <Leader><S-b> :ALEFindReferences<Cr>
+map <Leader>n :ALERename<Cr>
 
 
 
